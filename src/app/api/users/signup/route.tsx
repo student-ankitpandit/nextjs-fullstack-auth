@@ -12,8 +12,8 @@ connect()
 
 export async function POST(request: NextRequest){
     try {
-        const reqBody = request.json
-        const {username, email, password} = reqBody
+        const reqBody = await request.json()
+        const {username, email, password} = reqBody //this reqBody is a promise
 
         //discuss validation
         console.log(reqBody);
