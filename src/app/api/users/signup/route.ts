@@ -42,7 +42,8 @@ export async function POST(request: NextRequest){
 
         return NextResponse.json({
             message: "user registered successfully",
-            success: true
+            success: true,
+            savedUser
         })
 
     } catch (error:any) {
