@@ -20,15 +20,15 @@ export const sendEmail = async({email, emailType, userId}:any) => {
             port: 2525,
             auth: {
               user: "a95af137885099",
-              pass: "********83d8"
+              pass: "92309f08e483d8"
             }
           });
           
           
 
         const mailOptions = {
-            from: 'ankit@ankitgmail.ai',
-            to: "justdoit@gmail.com",
+            from: 'ap@gmail.com',
+            to: "ankit@ankitpandit.com",
             subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
             html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}
             or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
