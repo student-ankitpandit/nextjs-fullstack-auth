@@ -2,7 +2,6 @@ import nodemailer from 'nodemailer';
 import User from "@/model/userModel";
 import bcryptjs from 'bcryptjs';
 
-
 export const sendEmail = async({email, emailType, userId}:any) => {
     try {
         // create a hased token
@@ -20,16 +19,16 @@ export const sendEmail = async({email, emailType, userId}:any) => {
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-              user: "3fd364695517df",
-              pass: "7383d58fd399cf"
-              //TODO: add these credentials to .env file
+              user: "a95af137885099",
+              pass: "********83d8"
             }
           });
-
+          
+          
 
         const mailOptions = {
-            from: 'hitesh@gmail.com',
-            to: email,
+            from: 'ankit@ankitgmail.ai',
+            to: "justdoit@gmail.com",
             subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
             html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}
             or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}

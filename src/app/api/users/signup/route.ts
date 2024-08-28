@@ -41,7 +41,7 @@ export async function POST(request: NextRequest){
         await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
 
         return NextResponse.json({
-            message: "user registered successfully",
+            message: "User registered successfully",
             success: true,
             savedUser
         })
