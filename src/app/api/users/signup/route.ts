@@ -1,11 +1,9 @@
-import {connect} from '@/dbConfig/dbConfig'
-import User from '@/model/userModel'
-import { error, log } from 'console'
-import next from 'next'
-import {NextRequest, NextResponse} from 'next/server'
-import { json } from 'stream/consumers'
-import  bcryptjs from 'bcryptjs'
-import { sendEmail } from '@/helpers/mailer'
+import {connect} from "@/dbConfig/dbConfig";
+import User from "@/model/userModel";
+import { NextRequest, NextResponse } from "next/server";
+import bcryptjs from "bcryptjs";
+import { sendEmail } from "@/helpers/mailer";
+
 
 connect()
 
@@ -13,19 +11,19 @@ connect()
 export async function POST(request: NextRequest){
     try {
         const reqBody = await request.json()
-        const {username, email, password} = reqBody //this reqBody is a promise
+        const {username, email, password} = reqBody
 
-        //discuss validation
         console.log(reqBody);
 
+        //check if user already exists
         const user = await User.findOne({email})
 
-        if(user) {
-            return NextResponse.json({error: "User already exist"}, {status: 500})
+        if(user){
+            return NextResponse.json({error: "User already exists"}, {status: 400})
         }
-        
-        //async bcryptjs
-        const salt = await bcryptjs.genSalt(10);
+
+        //hash password
+        const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(password, salt)
 
         const newUser = new User({
@@ -38,18 +36,20 @@ export async function POST(request: NextRequest){
         console.log(savedUser);
 
         //send verification email
+
         await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
 
         return NextResponse.json({
-            message: "User registered successfully",
+            message: "User created successfully",
             success: true,
             savedUser
         })
-
-    } catch (error:any) {
-        return NextResponse.json({error: error.message}, {
-            status: 500
-        })
         
+        
+
+
+    } catch (error: any) {
+        return NextResponse.json({error: error.message}, {status: 500})
+
     }
 }
