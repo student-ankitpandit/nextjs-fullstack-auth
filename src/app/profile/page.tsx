@@ -13,7 +13,7 @@ export default function ProfilePage() {
         try {
             await axios.get('/api/users/logout')
             toast.success('Logout successful')
-            router.push('/login')
+            router.push('/logout')
         } catch (error:any) {
             console.log(error.message);
             toast.error(error.message)
@@ -42,9 +42,8 @@ export default function ProfilePage() {
         <button
         onClick={getUserDetails}
         className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >GetUser Details</button>
-
-
+        >Get User Details</button>
+        
         </div>
     )
 }
