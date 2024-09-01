@@ -34,15 +34,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## TODO
-1. Improve the UI of the application
-2. Add feature of forgot password
-
-### Hint:
-For forgot password feature.
-1. User needs a page to enter his email and submit.
-2. Validate if user exists, if yes, send him same token email that we discussed in this course
-3. User clicks on email and get a page to enter new password with a submit button.
-4. As soon as he click submit button, he is sending you a token and new password.
-5. Verify the token and save the new password after encrypting it.
